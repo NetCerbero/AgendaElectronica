@@ -126,7 +126,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('agenda.index') }}">
+						<a class="nav-link" href="{{ route('mensaje.index') }}">
 							<i class="batch-icon batch-icon-calendar"></i>
 							Chat
 						</a>

@@ -23,4 +23,8 @@ class ProfesorCurso extends Model
     public function CursoTutor($idProfesor){
         return $this->cursos();
     }
+
+    public function mensaje(){
+        return $this->hasMany(Mensaje::class,'profesor_curso');
+    }
 }

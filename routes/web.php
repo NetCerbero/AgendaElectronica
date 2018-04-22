@@ -118,3 +118,5 @@ Route::get('cursoget',['as'=>'CursoTutor','uses'=>'PersonaController@CursosTutor
 Route::get('alumnoscursoget/{idCurso?}',['as'=>'AlumnosInscritos','uses'=>'PersonaController@AlumnoInscritosCurso']);
 
 /*=============================================================*/
+
+Route::resource('mensaje','MensajeController');
