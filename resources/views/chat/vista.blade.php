@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('cssPersonalizado')
-
+ 
 @stop
 @section('Titulo')
 	<h1>Agenda</h1>
@@ -24,7 +24,6 @@
 		</div>
 	</div>
 @endforeach
-
 
 @stop
 

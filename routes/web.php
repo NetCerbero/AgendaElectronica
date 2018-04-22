@@ -120,3 +120,25 @@ Route::get('alumnoscursoget/{idCurso?}',['as'=>'AlumnosInscritos','uses'=>'Perso
 /*=============================================================*/
 
 Route::resource('mensaje','MensajeController');
+
+/*Route::group(['prefix'=>'pusher','middleware'=>['auth']],function(){
+	Route::post('mensaje/{id}',function($id,\Illuminate\Http\Request $request){
+			$comment =new \App\Mensaje([
+				'mensaje'=>$request>input('comment'),
+				'user_id' => auth()->user()->id,
+				'post_id' => $id
+			]);
+			$comment->save();
+			broadcast(new \App\Events\FireMensaje($comment))->toOthers();
+	})->name('comments.create');
+
+	Route::get('posts/{id}',function($id){
+		$post = \App\Mensaje::findOrFail($id);
+		return view('chat',compact('post'));
+	});
+
+	Route::get('comment/{id}',function($id){
+		$comment = \App\Mensaje::where('post_id',$id)->with('user')->get();
+		return response()->json($comment);
+	})->name('coments.list');
+});*/
