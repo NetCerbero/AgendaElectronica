@@ -104,6 +104,8 @@ Usuarios:
 	- Padres
 */
 Route::resource('usuario','PersonaController');
+Route::post('credencial',['as'=>'credencial','uses'=>'PersonaController@Credencial']);
+Route::get('persona/{id}',["as"=>"personalista","uses"=>"PersonaController@PersonaLista"]);
 Route::get('alumnoget',['as' => 'alumnolista','uses' => 'PersonaController@AlumnoLista']);
 Route::get('profesorget',['as' => 'profesorlista','uses' => 'PersonaController@ProfesorLista']);
 

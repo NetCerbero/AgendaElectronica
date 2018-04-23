@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Persona;
+use App\User;
 class PersonaController extends Controller
 {
     function __construct(){
@@ -146,5 +147,41 @@ class PersonaController extends Controller
         }
 
         return [];
+    }
+
+    public function PersonaLista($id){
+
+        //dd($id);
+        switch ($id) {
+            case 1:
+                $titulo = "Lista de Profesores";
+                $personas = Persona::all()->where('tipoProfesor','=','v');
+                return view('usuario.index',compact('personas','titulo'));
+            case 2:
+                $titulo = "Lista de Alumnos";
+                $personas = Persona::all()->where('tipoAlumno','=','v');
+                return view('usuario.index',compact('personas','titulo'));
+            case 3:
+                $titulo = "Lista de Pradres de familia";
+                $personas = Persona::all()->where('tipoPadre','=','v');
+                return view('usuario.index',compact('personas','titulo'));
+        }
+
+        
+    }
+
+    public function Credencial(Request $rq){
+        /*$a = new App\User;
+        $a->email = $rq->input('email');
+        $a->password = bcrypt($rq->input('password'));
+        $a->personaId = $rq->input('id_persona');
+        $a->save();*/
+        User::create([
+            "email" => $rq->input('email'),
+            "password" => bcrypt($rq->input('password')),
+            "personaId" => $rq->input('id_persona'),
+            "role" => (int)$rq->input('rol')
+        ]);
+        return response()->json("ok");
     }
 }

@@ -76,13 +76,13 @@
 						</a>
 						<ul class="nav nav-pills flex-column">
 							<li class="nav-item">
-								<a class="nav-link" href="{{ route('usuario.index') }}">Profesores</a>
+								<a class="nav-link" href="{{ route('personalista',1) }}">Profesores</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{{ route('usuario.index') }}">Alumnos</a>
+								<a class="nav-link" href="{{ route('personalista',2) }}">Alumnos</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{{ route('usuario.index') }}">Padres de Familia</a>
+								<a class="nav-link" href="{{ route('personalista',3) }}">Padres de Familia</a>
 							</li>
 							<!--<li class="nav-item">
 								<a class="nav-link" href="layout-top-menu-normal.html">Top Menu - Normal</a>
