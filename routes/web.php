@@ -144,3 +144,7 @@ Route::resource('mensaje','MensajeController');
 		return response()->json($comment);
 	})->name('coments.list');
 });*/
+
+
+//Routas ocupadas por android
+Route::post('loginAndroid','PersonaController@Verificar');

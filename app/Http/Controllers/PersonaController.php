@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Persona;
@@ -8,7 +10,7 @@ use App\User;
 class PersonaController extends Controller
 {
     function __construct(){
-        $this->middleware('auth');
+       // $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -183,5 +185,20 @@ class PersonaController extends Controller
             "role" => (int)$rq->input('rol')
         ]);
         return response()->json("ok");
+    }
+
+    public function Verificar(Request $rq){
+        $a = User::where('email', '=',$rq->input('email'))->get();
+        if (count($a)>0) {
+            if(Hash::check($rq->input('password'),$a->pop()->password)){
+                //if($a->pop()->password == bcrypt($rq->input('password'))){
+                return "success";
+            }else{
+                return "verificar";
+            }
+        }else{
+            dd($a); 
+        }
+        
     }
 }
