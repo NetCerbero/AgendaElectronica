@@ -19,6 +19,10 @@ class AlumnoCurso extends Model
     }
 
     public function mensaje(){
-    	return $this->hasMany(Mensaje::class,'alumno_id');
+    	return $this->hasMany(Mensaje::class,'alumnocurso_id');
+    }
+
+    public function detalleAsunto(){
+        return $this->hasMany(Asunto::class,'id');
     }
 }

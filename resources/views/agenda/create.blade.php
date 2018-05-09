@@ -30,7 +30,7 @@
 
 
 @section('ContenidoCasoUso')
-<form method="post" action="{{ route('agenda.store') }}">
+<form method="post" action="{{ route('agenda.store') }}" enctype="multipart/form-data">
 	<div class="form-row">
 		{{ csrf_field() }}
 	    <div class="form-group col-md-6">
@@ -99,7 +99,6 @@
   	</div>
 	<button type="submit" class="btn btn-primary">Registrar</button>
 </form>
-
 @stop
 
 @section('scripts')

@@ -47,7 +47,7 @@
 					    </div>
 					    <div class="form-group col-md-12 col-lg-6">
 					        <label for="message-text" class="col-form-label">Gestion</label>
-					  	    <input type="tel" class="form-control" name="gestion" id="recipient-name">
+					  	    <input type="tel" class="form-control" name="gestion" id="gestion">
 					    </div>		        		
 			       	</div> 
 			       
@@ -103,6 +103,8 @@
 <script>
 	var sw = true;
 	$(window).on("load",function(){
+		var fecha = new Date();
+		$('#gestion').val(fecha.getFullYear());
 		$('#inscripcion').click(function(){
 			if(sw){
 				$.get("{{ route('cursolista') }}",function(data, status){

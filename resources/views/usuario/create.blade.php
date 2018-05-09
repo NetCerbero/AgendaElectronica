@@ -34,28 +34,43 @@
 	      </select>
 	    </div>
 
-	    <div class="form-group col-md-6">
+		<div class="form-group col-md-6">
+	      <label for="inputState">Padre</label>
+	      <select id="inputState" class="form-control" name="hijoDe" required>
+	      	<option value="-1" selected>Elija el Padre</option>
+	      	@foreach ($persona as $p)
+	      		@if($p->tipoPadre == 'v')
+	      			<option value={{ $p->id }}> {{ $p->nombre." ".$p->apellido }}</option>
+	      		@endif
+	      	@endforeach
+	      </select>
+	    </div>
+
+	    <div class="form-group col-md-4">
 	      <label for="Fecha">Fecha de Nacimiento</label>
 	      <input type="date" class="form-control" name="fechaNacimiento" id="inputPassword4" required>
 	    </div>
-  	</div>
 
-  	<div class="form-row">
-   	 	<div class="form-group col-md-6">
+	    <div class="form-group col-md-4">
   	    	<label for="inputCity">Numero de Carnet</label>
   	    	<input type="tel" class="form-control"  name="ci" id="inputCity">
     	</div>
 	    
-	    <div class="form-group col-md-6">
+	    <div class="form-group col-md-4">
 	      <label for="inputZip">Telefono</label>
 	      <input type="tel" class="form-control" name="telefono" id="inputZip">
 	    </div>
+
+	    <div class="form-group col-md-12">
+		  <label for="inputAddress">Direccion</label>
+		  <input type="text" class="form-control" id="inputireccion" name="direccion" placeholder="Las Americas z/sur">
+		</div>
   	</div>
 
-	<div class="form-group">
-	  <label for="inputAddress">Direccion</label>
-	  <input type="text" class="form-control" id="inputireccion" name="direccion" placeholder="1234 Main St">
-	</div>
+
+   	 	
+
+	
 	<button type="submit" class="btn btn-primary">Registrar</button>
 </form>
 @stop

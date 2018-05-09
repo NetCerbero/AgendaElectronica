@@ -36,4 +36,8 @@ class Curso extends Model
     public function detalleEncargado(){
         return $this->hasMany(ProfesorCurso::class,'curso_id');
     }
+
+    public function mensaje(){
+        return $this->hasMany(Mensaje::class, 'curso_id');
+    }
 }

@@ -17,3 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('loginAndroid','PersonaController@Verificar');
+Route::post('setToken','ChatController@SetToken');
+Route::get('getToken/{id}','ChatController@GetToken');
+Route::get('getHijos/{email}','ChatController@GetHijoChat');
+Route::post('setMensajeAndroid','ChatController@SetMensajeAndroid');
+Route::get('getAgendas/{email}','AgendaController@GetAgendas');

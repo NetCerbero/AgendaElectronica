@@ -63,12 +63,7 @@
 					<li>
 						<h6 class="nav-header">Administración</h6>
 					</li>
-					<!--<li class="nav-item">
-						<a class="nav-link active" href="index.html">
-							<i class="batch-icon batch-icon-browser-alt"></i>
-							Dashboard <span class="sr-only">(current)</span>
-						</a>
-					</li>-->
+				
 					<li class="nav-item">
 						<a class="nav-link nav-parent" href="#">
 							<i class="batch-icon batch-icon-layout-content-left"></i>
@@ -84,9 +79,7 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{ route('personalista',3) }}">Padres de Familia</a>
 							</li>
-							<!--<li class="nav-item">
-								<a class="nav-link" href="layout-top-menu-normal.html">Top Menu - Normal</a>
-							</li>-->
+							
 						</ul>
 					</li>
 					<li class="nav-item">
@@ -126,7 +119,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('mensaje.index') }}">
+						<a class="nav-link" href="{{ route('contactosChat') }}">
 							<i class="batch-icon batch-icon-calendar"></i>
 							Chat
 						</a>
@@ -376,7 +369,7 @@
 						<div class="col-md-12">
 							@yield("Titulo")
 						</div>
-						<div class="col-md-12">
+						<div class="col-md-12 chat-contenedor">
 							<div class="card">
 								<div class="card-header mt-12">
 									<div class="row">
@@ -384,11 +377,13 @@
 									</div>
 									
 								</div>
-								<div class="card-body">
+								<div class="card-body chat-padding">
 									@yield('Subtitulo')									
 									<div class="row">
 										<div class="col-lg-12">
+
 											@yield("ContenidoCasoUso")
+											
 										</div>										
 									</div>
 								</div>

@@ -26,11 +26,12 @@ use Illuminate\Support\Facades\DB;
 	$u = new App\User;
 	$u->email = "luiyer1920@gmail.com";
 	$u->password = bcrypt("123456");
+	$u->role = 1;
 	$u->personaId = $c->id;
 	$u->save();
 });*/
 /*Inicio de Sesion*/
-Route::get('login',['as'=>'login','uses'=>'Auth\LoginController@showLoginForm']);
+Route::get('/',['as'=>'login','uses'=>'Auth\LoginController@showLoginForm']);
 /*Login-Autenticacion*/
 Route::post('login','Auth\LoginController@login');
 /*Logout*/
@@ -40,9 +41,9 @@ Route::get('home',function(){
 	return view('layout');//mandar a la pagina de inicio saludos al usuario
 });
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('index');
-});
+});*/
 
 /*===============================================================
 Agenda:
@@ -57,14 +58,14 @@ Asunto:
 	- Evento
 	- Avisos
 */
-Route::resource('asunto','AsuntosController');
+//Route::resource('asunto','AsuntosController');
 
 /*
 Contenido:
 	adiere contenido a los asuntos que se envian a los alumnos
 */
-Route::resource('contenido','ContenidoController');
-
+//Route::resource('contenido','ContenidoController');
+Route::post('file-upload/{id}','ContenidoController@store');
 /*
 Cronograma
 	son cronogramas anuales, tambien se podra hacer cronogramas del curso que lo hara el profesor
@@ -82,7 +83,7 @@ Eventos
 	invitaciones
 	otros
 */
-Route::resource('evento','EventosController');
+//Route::resource('evento','EventosController');
 
 /*
 Inscripciones de alumnos en sus respectivos cursos
@@ -148,3 +149,8 @@ Route::resource('mensaje','MensajeController');
 
 //Routas ocupadas por android
 Route::post('loginAndroid','PersonaController@Verificar');
+Route::get('chat','ChatController@Prueba');
+Route::post('envioMsg',['as'=>'envioAndroid','uses'=>'ChatController@store']);
+Route::get('chatRealTime',['as'=>'contactosChat','uses'=>'ChatController@index']);
+Route::get('getMensaje/{Emisor}/{Receptor}/{tipoR}',['as'=>'chatMensaje','uses'=>'ChatController@GetMensaje']);
+Route::get('getMensajeLeer/{Emisor}/{Receptor}/{tipoR}',['as'=>'chatMensajeLeer','uses'=>'ChatController@GetMensajeLeer']);

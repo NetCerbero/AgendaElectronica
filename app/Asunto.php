@@ -17,4 +17,13 @@ class Asunto extends Model
     	
     	return $this->belongsTo(TipoAsunto::class,'tipo_asunto');
     }
+
+    public function contenido(){
+        return $this->hasMany(Contenido::class,'id_asunto');
+    }
+
+    public function detalleAsunto(){
+        return $this->belongsToMany(AlumnoCurso::class,'asunto_detalles','id','id');   
+    }
+    
 }

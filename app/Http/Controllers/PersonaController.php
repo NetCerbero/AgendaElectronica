@@ -30,7 +30,8 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        return view('usuario.create');
+        $persona = Persona::all();
+        return view('usuario.create',compact('persona'));
     }
 
     /**
@@ -43,18 +44,22 @@ class PersonaController extends Controller
     {   
         //dd($request) ;
         $usr = [];
+        $tipo = 0;
         switch ($request->input('tipo')) {
             case 1:
+                $tipo = 1;
                 $usr['tipoProfesor'] = 'v';
                 $usr['tipoPadre'] = 'f';
                 $usr['tipoAlumno'] = 'f';
                 break;
             case 2:
+                $tipo = 3;
                 $usr['tipoProfesor'] = 'f';
                 $usr['tipoPadre'] = 'v';
                 $usr['tipoAlumno'] = 'f';
                 break;
             case 3:
+                $tipo = 2;
                 $usr['tipoProfesor'] = 'f';
                 $usr['tipoPadre'] = 'f';
                 $usr['tipoAlumno'] = 'v';
@@ -68,8 +73,11 @@ class PersonaController extends Controller
         $usr["direccion"] = $request->input("direccion");
         $usr["created_at"] = Carbon::now();
         $usr["updated_at"] = Carbon::now();
+        if($request->input('hijoDe') != -1){
+            $usr['hijoDe'] = $request->input('hijoDe');
+        }
         Persona::Add($usr);
-        return redirect()->route("usuario.index");
+        return redirect()->route("personalista",$tipo);
     }
 
     /**
@@ -188,6 +196,7 @@ class PersonaController extends Controller
     }
 
     public function Verificar(Request $rq){
+        //dd($rq);
         $a = User::where('email', '=',$rq->input('email'))->get();
         if (count($a)>0) {
             if(Hash::check($rq->input('password'),$a->pop()->password)){
@@ -197,8 +206,20 @@ class PersonaController extends Controller
                 return "verificar";
             }
         }else{
-            dd($a); 
+            return "no existe el usuario";
         }
         
+    }
+
+    public function ActualizarTokenPersona($token,$id){
+        $personas = new Persona;
+        $persona->find($id)->update([
+            "tokenFirebase"->$token
+        ]);
+    }
+
+    public function GetTokenPersona($idPersona){
+
+        return "123456";
     }
 }

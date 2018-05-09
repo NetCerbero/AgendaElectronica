@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Asunto;
 use App\AsuntoDetalle;
 use DB;
+use App\User;
+use App\Persona;
 class AgendaController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -158,5 +160,32 @@ class AgendaController extends Controller
     public function CrearContenidoAgendaALumno($id,$nombre){
         return view('agenda.create',compact('id','nombre'));
         //return $id.$nombre;
+    }
+
+
+    public function GetAgendas($email){
+        $usr = User::all()->where('email',$email);
+        if(count($usr)>0){
+            $agenda = [];
+            $i  = 1;
+            $usr = $usr->pop();
+            $padre = $usr->persona->PadreDe;
+            //dd($padre);
+            foreach ($padre as $key => $hijos) {
+                $ins = $hijos->inscritoCursos;
+                foreach ($ins as $detalle) {
+                    //$curso = $detalle->curso->nombre;
+                    $infagenda = DB::select("select a.id, a.titulo,a.mensaje, a.fecha, cr.nombre from asunto_detalles s, asuntos a,alumno_cursos al, cursos cr where s.asunto_id = a.id and $detalle->id = s.alumnocurso_id and $detalle->id = al.id and al.curso_id = cr.id");
+                    //array_unshift($agenda[$i],$curso);
+                    //array_push($agenda[$i],$curso);
+                    if(count($infagenda)>0){
+                        $agenda[$i] = $infagenda;  
+                         $i++; 
+                    }
+                }
+                # code...
+            }
+            return $agenda;
+        }
     }
 }

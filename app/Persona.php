@@ -9,6 +9,7 @@ class Persona extends Model
 {
     protected $table = "Persona";
     protected static $bd = "Persona";
+    protected $fillable = ['nombre','apellido','tipoAlumno','tipoProfesor','tipoPadre','fechaNacimiento','token_firebase','ci','direccion'];
 
     public function credencial(){
     	return $this->hasOne(User::class,'personaId');
@@ -40,5 +41,13 @@ class Persona extends Model
         return DB::table(Persona::$bd)->select('id','nombre','apellido')
                                     ->where('tipoProfesor', '=', 'v')
                                     ->get();
+    }
+
+    public function hijoDePersona(){
+        return $this->belongsTo(Persona::class,'hijoDe');
+    }
+
+    public function PadreDe(){
+        return $this->hasMany(Persona::class,'hijoDe');
     }
 }

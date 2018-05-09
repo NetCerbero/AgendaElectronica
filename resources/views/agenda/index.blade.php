@@ -32,7 +32,10 @@
 				  <div class="card-body text-primary py-1">
 				    <h6 class="card-title">{{ $a->tipoAsunto->nombre }}</h6>
 				    <p class="card-text">{{ $a->mensaje }}</p>
-				    <div class="card-footer bg-transparent py-1">{{ $a->fecha }}</div>
+				    <div class="card-footer bg-transparent py-1 d-flex justify-content-between">
+				    	<div>{{ $a->fecha }}</div>
+				    	<!--<a href="#" class="btn btn-primary d-flex align-items-end">Agregar contenido</a>-->
+				    </div>
 				  </div>
 
 				</div>	

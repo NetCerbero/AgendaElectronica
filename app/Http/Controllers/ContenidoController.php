@@ -35,9 +35,16 @@ class ContenidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        return $request;
+        $image = $request->file('file');
+        if($image){
+            $imgName = $image->getClientOriginalName();
+            $image->move('img',$imgName);
+            $imagePath = public_path("img/$imgName");            
+        }
+        return "okey";
     }
 
     /**
